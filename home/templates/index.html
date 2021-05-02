@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% load cart %}
+
+    <!-- MAIN CONTENT -->
+
+    <!-- Deals -->
+    <div class = "deal_prd">
+
+      <button type="button" class="btn btn-lg btn-outline-secondary" style = "float: right;">View All</button>
+      <h4> Top Deals </h4>
+      
+      <div class = "deal_prd_head">
+        {% for deal in deals %}
+          <a href = "#">
+            <div class = "deal_card">
+              <img src = "{{deal.img.url}}">
+              <h5> {{deal.name}} </h5>
+            </div>
+          </a>
+        {% endfor %}
+
+      </div>
+
+    </div> 
+    <!-- Deals -->
+
+    <!-- Ads -->
+
+    <div class = "ads">
+      
+      {% for ad in ads %}
+        <a href = "#"><img src = "{{ad.img.url}}"></a>
+      {% endfor %}
+
+    </div>
+
+    <!-- Ads -->
+
+
+    <div class = "text-center" style = "margin-top: 150px;">
+      <h1 style = " font-weight:bold; font-size: 65px; margin-bottom: -150px;background: -webkit-linear-gradient(#464647, #272B2B);
+                                                                         -webkit-background-clip: text;
+                                                                         -webkit-text-fill-color: transparent;"> Our Products</h1>
+    </div>
+
+  <!-- All Products -->  
+  <div class="container-fluid" style = "background:  #455A64;">
+    <div class = "row">
+
+        <!-- Categories -->
+        <div class="dropdown col-lg-4 text-center">
+            <button class="btn btn-lg btn-outline-secondary dropdown-toggle" style = "color: #fff;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Filter Brands
+            </button>
+
+            <div class="dropdown-menu" style = "overflow-y: scroll; max-height: 200px;" aria-labelledby="dropdownMenuButton">
+                {% for category in categories %}
+                    <a class="dropdown-item" href="/?category={{category.id}}">{{category.name}}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- Categories -->
+
+        <!-- Products -->
+        <div id = "products" class = "col-lg-7">
+          <div class="row mx-auto">
+            {% for product in products %}
+            <div class="card mx-auto mb-3" id = {{product.id}} style="width: 17rem; height: 100%">
+              <img class="card-img-top" style = "height: 250px; width: 260px;" src="{{product.image.url}}" alt="Card image cap">
+              <div class="card-body">
+              <h5 class="card-title">{{product.name}}</h5>
+              <p class="card-text" style = "float: right; color: green;">{{product.description}}</p>
+              <p class="card-text"><b> ₹ {{product.price}} </b></p>
+              
+           
+            
+              </div>
+
+              <div class = "card-footer p-0 no-gutters">
+
+                {% if product|is_in_cart:request.session.cart %}
+                <div class = "row no-gutters">
+
+                  <form action = "/#{{product.id}}" class = "col-2" method = "post">
+                    {% csrf_token %}
+                    <input hidden type = "text" name = "product" value = "{{ product.id }}">
+                    <input hidden type = "text" name = "remove" value = "True">
+                    <input type = "submit" value = " - " class = "btn btn-block btn-secondary">
+                  </form>
+
+                  <div class = "text-center col"> <b> {{product|cart_quantity:request.session.cart}} in cart </b></div>
+                  
+                  <form action = "/#{{product.id}}" class = "col-2" method = "post">
+                    {% csrf_token %}
+                    <input hidden type = "text" name = "product" value = "{{ product.id }}">
+                    <input type = "submit" value = " + " class = "btn btn-block btn-secondary">
+                  </form>
+                </div>
+                {% else %}
+                <form action = "/#{{product.id}}" method = "POST" class = "btn-block">
+                  {% csrf_token %}
+                  <input hidden type = "text" name = "product" value = "{{ product.id }}">
+                  <input type = "submit" class=" form-control float-right btn btn-dark border btn-lg" value = "Add to cart">
+                </form>
+                {% endif %}
+                
+              </div>
+
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <!-- Products -->
+    </div>
+  </div>
+  
+  <!-- All Products -->
+
+    <!-- MAIN CONTENT -->
+
+{% endblock %}

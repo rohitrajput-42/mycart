@@ -1,0 +1,74 @@
+.container div{
+    height: 100px;
+    width: 10px;
+}
+
+.container div a img{
+    height: 70px;
+}
+
+.container div a{
+    color: #9a9d9c;
+    font-weight: lighter;
+}
+
+.container div a:hover{
+    text-decoration: none;
+}
+
+.container div h6:hover{
+    font-weight: bold;
+    color: red;
+}
+
+.deal_prd{
+    border-radius: 15px;
+    border: 1px solid none;
+    margin: 50px;
+    padding-top: 10px;
+    background: url("deal_body_bg.jpg");
+}
+
+.deal_prd button{
+    margin: 25px 40px 20px 20px;
+}
+
+.deal_prd h4{
+    
+    color: #fff;    
+    font-size: 45px;
+    margin: 25px 0px 0px 15px;
+}
+
+.deal_prd_head{
+    padding: 20px;
+    margin: 35px 15px 15px 15px;
+    text-align: center;
+}
+
+.deal_card{
+    text-align: center;
+    padding-top: 20px; 
+    display: inline-block;
+    margin: 0px 20px 0px 20px;
+}
+
+.deal_card img{
+    border-radius: 3px;
+}
+
+.deal_card h5{
+    margin: 10px 0px 10px 0px;
+    color: #fff;
+}
+
+.ads{
+    margin: 150px 50px 0px 50px;
+    text-align: center;
+}
+
+.ads img{
+    height: 220px;
+    margin: 0px 15px 0px 15px;
+    border-radius: 10px;
+}

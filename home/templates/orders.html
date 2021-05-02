@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load cart %}
+{% load custom_filter %}
+
+{% block content %}
+
+<div class="mt-5">
+    <div class="border rounded m-5">
+        <p class = "display-2 p-3" style = "background: -webkit-linear-gradient(#f5f7fa, #b8c6db);
+                                                        -webkit-background-clip: text;
+                                                        -webkit-text-fill-color: transparent;"> Your Orders </p>
+        <table class="table table-dark table-bordered">
+            <thead>
+                <tr>
+                    <th>SNo.</th>
+                    <th>Image</th>
+                    <th>Product</th>
+                    <th>Date</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody style = "background: #455A64;">
+                {% for order in orders %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td><img style = "height: 80px;" class = "rounded-circle" src="{{order.product.image.url}}" alt = ""></td>
+                    <td>{{order.product.name}}</td>
+                    <td>{{order.date}}</td>
+                    <td>{{order.price|currency}}</td>
+                    <td>{{order.quantity}}</td>
+                    <td>{{order.quantity|multiply:order.price|currency}}</td>
+                    
+                    {% if order.order_status %}
+                        <td><small class = "badge badge-success"> Completed </small></td>
+                    {% else %}
+                        <td><small class = "badge badge-warning"> Pending </small></td>
+                    {% endif %}
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

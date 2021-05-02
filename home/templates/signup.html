@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+  <div class = "main">
+    <h1> SignUp (for New Users) </h1>
+    <div class = "main_body">
+        
+        <form action = "/signup" method = "post">
+            {% csrf_token %}
+
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{error}}
+                </div>
+            {% endif %}
+
+            <div class = "form-group">
+                <input required type = "text" name = "fullname" class = "form-control" placeholder = "FullName" style = "color: red; font-weight: bold;" />
+            </div>
+
+            <div class = "form-group">
+                <input required type = "text" name = "username" class = "form-control" placeholder = "username" style = "color: red; font-weight: bold;" />
+            </div>
+            
+            <div class = "form-group">
+                <input required type = "email" name = "email" class = "form-control" placeholder = "Email" style = "color: red; font-weight: bold;" />
+            </div>
+
+            <div class = "form-group">
+                <input required type = "text" name = "mobile" class = "form-control" placeholder = "Phone Number" style = "color: red; font-weight: bold;" />
+            </div>
+
+            <div class = "form-group">
+                <input required type = "password" name = "password" class = "form-control" placeholder = "Password" style = "color: red; font-weight: bold;" />
+            </div>
+
+            <div class = "form-group">
+                <input id = "bttn" class = "btn btn-info" type = "submit" value = "SignUp">
+            </div>
+        
+        </form>
+
+        <div class = "or">
+        <p> OR </p>
+        </div>
+
+        <hr class = "marker">
+
+        <div class = "auser mt-5">
+        <p> Already a User? <a href = "/login">Login here!!!... </a></p>
+        </div>
+    </div>
+  </div>
+
+{% endblock %}

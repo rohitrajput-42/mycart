@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div class = "main">
+    <h1> Login (for Existing Users) </h1>
+    <div class = "main_body">
+        
+        <form action = "/login" method = "post">
+          {% csrf_token %}
+
+          {% if error %}
+              <div class="alert alert-danger" role="alert">
+                  {{error}}
+              </div>
+          {% endif %}
+          <div class = "form-group">
+              <input required type = "text" name = "username" class = "form-control" placeholder = "username" style = "color: red; font-weight: bold;"/>
+          </div>
+          
+          <div class = "form-group">
+              <input required type = "password" name = "password" class = "form-control" placeholder = "Password" style = "color: red; font-weight: bold;" />
+          </div>
+
+          <div class = "form-group">
+              <input id = "bttn" class = "btn btn-info" type = "submit" value = "Login">
+          </div>
+        
+        </form>
+
+        <div class = "or">
+        <p> OR </p>
+        </div>
+
+        <hr class = "marker">
+
+        <div class = "auser mt-5">
+        <p> New User? <a href = "/signup">Register here!!!... </a></p>
+        </div>
+    </div>
+  </div>
+
+  
+{% endblock %}
