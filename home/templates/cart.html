@@ -46,7 +46,13 @@
         </table>
         <hr style = "background: #fff">
         <div class = "p-5 m-5">
+            {% if request.session.customer %}
             <a href = "#" data-toggle="modal" data-target="#exampleModal" class = "btn btn-outline-info border rounded col-lg-3 float-right"> Check out </a>
+            {% else %}
+            <button type="button" disabled class="btn btn-secondary" data-toggle="tooltip" data-html="true" title="Login to your account first">
+                Checkout
+            </button>
+            {% endif %}
         </div>
     </div>
 </div>
